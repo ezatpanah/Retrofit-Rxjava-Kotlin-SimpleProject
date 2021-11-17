@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.ezatpanah.simpleretrofitproject.R
 import com.ezatpanah.simpleretrofitproject.network.Result
 
-class MoviesAdapter(val movies: List<Result>): RecyclerView.Adapter<MoviesViewHolder>() {
+class MoviesAdapter(val movies: List<Result>) : RecyclerView.Adapter<MoviesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout, parent, false)
         return MoviesViewHolder(view)
@@ -26,18 +26,19 @@ class MoviesAdapter(val movies: List<Result>): RecyclerView.Adapter<MoviesViewHo
     }
 }
 
-class MoviesViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
+class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val photo: ImageView = itemView.findViewById(R.id.movie_photo)
     private val title: TextView = itemView.findViewById(R.id.movie_title)
-    private val overview:TextView = itemView.findViewById(R.id.movie_overview)
-    private val rating:TextView = itemView.findViewById(R.id.movie_rating)
+    private val overview: TextView = itemView.findViewById(R.id.movie_overview)
+    private val rating: TextView = itemView.findViewById(R.id.movie_rating)
 
     @SuppressLint("SetTextI18n")
     fun bind(movie: Result) {
-        Glide.with(itemView.context).load("https://image.tmdb.org/t/p/w500${movie.poster_path}").into(photo)
-        title.text = "Title: "+movie.title
+        Glide.with(itemView.context).load("https://image.tmdb.org/t/p/w500${movie.poster_path}")
+            .into(photo)
+        title.text = "Title: " + movie.title
         overview.text = movie.overview
-        rating.text = "Rating : "+movie.vote_average.toString()
+        rating.text = "Rating : " + movie.vote_average.toString()
     }
 
 }

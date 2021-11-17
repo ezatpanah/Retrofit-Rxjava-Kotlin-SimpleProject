@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ServiceBuilder {
+object ApiUtils {
     private val client = OkHttpClient
         .Builder()
         .build()
@@ -17,9 +17,9 @@ object ServiceBuilder {
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()
-        .create(TmdbEndpoints::class.java)
+        .create(ApiService::class.java)
 
-    fun buildService(): TmdbEndpoints {
+    fun buildService(): ApiService {
         return retrofit
     }
 }

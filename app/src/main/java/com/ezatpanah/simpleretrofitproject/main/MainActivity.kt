@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ezatpanah.simpleretrofitproject.network.PopularMovies
 import com.ezatpanah.simpleretrofitproject.R
-import com.ezatpanah.simpleretrofitproject.network.ServiceBuilder
+import com.ezatpanah.simpleretrofitproject.network.ApiUtils
 import com.ezatpanah.simpleretrofitproject.util.api_key
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
             val compositeDisposable = CompositeDisposable()
             compositeDisposable.add(
-                ServiceBuilder.buildService().getMovies(api_key)
+                ApiUtils.buildService().getMovies(api_key)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe({response -> onResponse(response)}, {t -> onFailure(t) }))
